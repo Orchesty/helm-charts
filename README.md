@@ -1,1 +1,1 @@
-# helm-charts
+# Orchesty Helm Charts Repository
