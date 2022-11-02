@@ -1,3 +1,3 @@
 # Orchesty Helm Charts Repository
 
-https://orchesty.github.io/helm-charts/
+`helm repo add orchesty  https://orchesty.github.io/helm-charts/`
