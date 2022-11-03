@@ -1,0 +1,85 @@
+---
+{{- $componentName := "starting-point" -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "pipes.fullname" (dict "suffix" $componentName "root" .) }}
+  labels:
+{{ include "pipes.labels" . | indent 4 }}
+{{ include "pipes.selectorLabels" (dict "suffix" $componentName "root" .) | indent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+{{ include "pipes.selectorLabels" (dict "suffix" $componentName "root" .) | indent 6 }}
+  template:
+    metadata:
+      labels:
+{{ include "pipes.selectorLabels" (dict "suffix" $componentName "root" .) | indent 8 }}
+    spec:
+{{ include "pipes.imagePullSecrets" . | indent 6 }}
+      containers:
+        - name: starting-point
+          image: {{ include "pipes.imageFullname" (dict "image" "starting-point" "root" .) }}
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: MONGO_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: mongodb_dsn
+                  name: {{ include "pipes.fullname" (dict "suffix" "secrets" "root" .) }}
+            - name: METRICS_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: metrics_dsn
+                  name: {{ include "pipes.fullname" (dict "suffix" "secrets" "root" .) }}
+            - name: RABBIT_COUNTER_QUEUE_DURABLE
+              value: "true"
+            - name: RABBIT_QUEUE_DURABLE
+              value: "true"
+            - name: RABBIT_DELIVERY_MODE
+              value: "2"
+            - name: RABBIT_HOSTNAME
+              valueFrom:
+                secretKeyRef:
+                  key: rabbitmq_host
+                  name: {{ include "pipes.fullname" (dict "suffix" "secrets" "root" .) }}
+            - name: RABBIT_PORT
+              valueFrom:
+                secretKeyRef:
+                  key: rabbitmq_port
+                  name: {{ include "pipes.fullname" (dict "suffix" "secrets" "root" .) }}
+            - name: RABBIT_VHOST # probably not supported yet
+              valueFrom:
+                secretKeyRef:
+                  key: rabbitmq_vhost
+                  name: {{ include "pipes.fullname" (dict "suffix" "secrets" "root" .) }}
+            - name: RABBIT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: rabbitmq_user
+                  name: {{ include "pipes.fullname" (dict "suffix" "secrets" "root" .) }}
+            - name: RABBIT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: rabbitmq_password
+                  name: {{ include "pipes.fullname" (dict "suffix" "secrets" "root" .) }}
+            - name: ORCHESTY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: orchesty_api_key
+                  name: {{ include "pipes.fullname" (dict "suffix" "secrets" "root" .) }}
+          resources:
+{{ toYaml .Values.global.startingPoint.resources | indent 12 }}
+
+{{- with .Values.global.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+{{- end }}
+{{- with .Values.global.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+{{- end }}

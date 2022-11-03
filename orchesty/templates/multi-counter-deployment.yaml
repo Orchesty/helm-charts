@@ -1,0 +1,68 @@
+{{- $componentName := "multi-counter" -}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "pipes.fullname" (dict "suffix" $componentName "root" .) }}
+  labels:
+{{ include "pipes.labels" . | indent 4 }}
+{{ include "pipes.selectorLabels" (dict "suffix" $componentName "root" .) | indent 4 }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+{{ include "pipes.selectorLabels" (dict "suffix" $componentName "root" .) | indent 6 }}
+  template:
+    metadata:
+      labels:
+{{ include "pipes.selectorLabels" (dict "suffix" $componentName "root" .) | indent 8 }}
+    spec:
+{{ include "pipes.imagePullSecrets" . | indent 6 }}
+      containers:
+        - name: multi-counter
+          args: ["/bin/counter", "start"]
+          image: {{ include "pipes.imageFullname" (dict "image" "counter" "root" .) }}
+          imagePullPolicy: Always
+          ports:
+            # just to satisfy the Service, not used
+            - name: http
+              containerPort: 8005
+          env:
+            - name: UDP_LOGGER_URL
+              value: {{ include "pipes.fullname" (dict "suffix" "logstash" "root" .) }}:5120
+            - name: RABBITMQ_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: rabbitmq_dsn
+                  name: {{ include "pipes.fullname" (dict "suffix" "secrets" "root" .) }}
+            - name: MONGODB_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: mongodb_dsn
+                  name: {{ include "pipes.fullname" (dict "suffix" "secrets" "root" .) }}
+            - name: METRICS_DSN
+              valueFrom:
+                secretKeyRef:
+                  key: metrics_dsn
+                  name: {{ include "pipes.fullname" (dict "suffix" "secrets" "root" .) }}
+            - name: STARTING_POINT_DSN
+              value: "{{ .Values.global.starting_point_url }}"
+            - name: ORCHESTY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: orchesty_api_key
+                  name: {{ include "pipes.fullname" (dict "suffix" "secrets" "root" .) }}
+          resources:
+{{ toYaml .Values.global.multiCounter.resources | indent 12 }}
+
+
+{{- with .Values.global.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+{{- end }}
+{{- with .Values.global.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+{{- end }}

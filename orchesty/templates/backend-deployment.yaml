@@ -1,0 +1,78 @@
+{{- $componentName := "backend" -}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "pipes.fullname" (dict "suffix" $componentName "root" .) }}
+  labels:
+{{ include "pipes.labels" . | indent 4 }}
+{{ include "pipes.selectorLabels" (dict "suffix" $componentName "root" .) | indent 4 }}
+spec:
+  selector:
+    matchLabels:
+{{ include "pipes.selectorLabels" (dict "suffix" $componentName "root" .) | indent 6 }}
+  template:
+    metadata:
+      labels:
+        timestamp: "{{ now | date "20060102150405" }}"
+{{ include "pipes.selectorLabels" (dict "suffix" $componentName "root" .) | indent 8 }}
+    spec:
+{{ include "pipes.imagePullSecrets" . | indent 6 }}
+      containers:
+        - name: php-w-nginx
+          image: {{ include "pipes.imageFullname" (dict "image" "backend" "root" .) }}
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 80
+          env:
+{{ include "pipes.monolithEnv" . | indent 12 }}
+            - name: USCCP_URI
+              value: https://usccp.cloud.orchesty.io
+            - name: ALPHA_INSTANCE_ID
+              value: {{ .Values.global.backend.alpha_instance_id }}
+            - name: JWE_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: applinth_jwe_private_key
+                  name: {{ include "pipes.fullname" (dict "suffix" "secrets" "root" .) }}
+            - name: UDP_LOGGER_URL
+              value: "{{ include "pipes.fullname" (dict "suffix" "logstash" "root" .) }}:5120"
+            - name: CHECK_INFINITY_LOOP
+              value: "{{ .Values.global.backend.checkInfinityLoop }}"
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: backend_jwt_key
+                  name: {{ include "pipes.fullname" (dict "suffix" "secrets" "root" .) }}
+            - name: X_AUTH_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: backend_x_auth_key
+                  name: {{ include "pipes.fullname" (dict "suffix" "secrets" "root" .) }}
+            - name: ORCHESTY_LICENSE
+              valueFrom:
+                secretKeyRef:
+                  key: license
+                  name: {{ include "pipes.fullname" (dict "suffix" "secrets" "root" .) }}
+            - name: CRYPT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: crypt_secret
+                  name: {{ include "pipes.fullname" (dict "suffix" "secrets" "root" .) }}
+            - name: ORCHESTY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: orchesty_api_key
+                  name: {{ include "pipes.fullname" (dict "suffix" "secrets" "root" .) }}
+          resources:
+{{ toYaml .Values.global.backend.resources | indent 12 }}
+
+{{- with .Values.global.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+{{- end }}
+{{- with .Values.global.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+{{- end }}
