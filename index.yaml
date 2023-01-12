@@ -3,7 +3,18 @@ entries:
   orchesty:
   - apiVersion: v2
     appVersion: 1.0.6
-    created: "2023-01-10T16:52:41.096895505+01:00"
+    created: "2023-01-12T12:27:42.072662328+01:00"
+    description: Orchesty is a platform + framework for systems integration and process
+      orchestration. See https://orchesty.io
+    digest: c860860913836af1c654c7bbeb177b04ea7fd99dd74f18eac0ef7b8f4b4763cf
+    name: orchesty
+    type: application
+    urls:
+    - https://orchesty.github.io/helm-charts/orchesty-1.2.4.tgz
+    version: 1.2.4
+  - apiVersion: v2
+    appVersion: 1.0.6
+    created: "2023-01-12T12:27:42.06375819+01:00"
     description: Orchesty is a platform + framework for systems integration and process
       orchestration. See https://orchesty.io
     digest: 0a90d85feb403a200c44c8cd301889718357e1905381ed0e522e72b0b5b518a7
@@ -14,7 +25,7 @@ entries:
     version: 1.2.3
   - apiVersion: v2
     appVersion: 1.1.0
-    created: "2023-01-10T16:52:41.082080438+01:00"
+    created: "2023-01-12T12:27:42.059630445+01:00"
     description: Orchesty si a platform + framework for systems integration and processes
       orchestration. See https://orchesty.io
     digest: 97fba270b5f2626904f71725e23e3a0533261cfdbd7aed704ffb1aacb29f97c5
@@ -25,7 +36,7 @@ entries:
     version: 1.2.2
   - apiVersion: v2
     appVersion: 1.1.0
-    created: "2023-01-10T16:52:41.080132538+01:00"
+    created: "2023-01-12T12:27:42.056318468+01:00"
     description: Orchesty si a platform + framework for systems integration and processes
       orchestration. See https://orchesty.io
     digest: 1ea536126186f3b289e62f27dfb69b8a563570dc334acc20b88499153c19e3e4
@@ -36,7 +47,7 @@ entries:
     version: 1.2.1
   - apiVersion: v2
     appVersion: 1.1.0
-    created: "2023-01-10T16:52:41.078162035+01:00"
+    created: "2023-01-12T12:27:42.052129757+01:00"
     description: Orchesty si a platform + framework for systems integration and processes
       orchestration. See https://orchesty.io
     digest: 46581736701233da28ca30c82fc68a4c2d922df31ac00f11f6badc940c544daf
@@ -45,4 +56,4 @@ entries:
     urls:
     - https://orchesty.github.io/helm-charts/orchesty-1.2.0.tgz
     version: 1.2.0
-generated: "2023-01-10T16:52:41.070674241+01:00"
+generated: "2023-01-12T12:27:42.038554406+01:00"
