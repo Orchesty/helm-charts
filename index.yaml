@@ -3,10 +3,21 @@ entries:
   orchesty:
   - apiVersion: v2
     appVersion: 2.0.0
-    created: "2023-05-29T13:13:53.733982+02:00"
+    created: "2023-05-29T14:42:00.393319+02:00"
     description: Orchesty is a platform + framework for systems integration and process
       orchestration. See https://orchesty.io
-    digest: d7893f004cfc3376c25ac26a9e25acf08f74bd7e7e6a9419cb648126b614ce82
+    digest: 55bd95f27e0a3499d8d268443657da6c964d96e3d051fc60ec6bfb73db29579c
+    name: orchesty
+    type: application
+    urls:
+    - https://orchesty.github.io/helm-charts/orchesty-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 2.0.0
+    created: "2023-05-29T14:42:00.392489+02:00"
+    description: Orchesty is a platform + framework for systems integration and process
+      orchestration. See https://orchesty.io
+    digest: 7a29fe1678807a17128569bdc6b665b945524a51bb09afae27b599fa59546fed
     name: orchesty
     type: application
     urls:
@@ -14,7 +25,7 @@ entries:
     version: 2.1.0
   - apiVersion: v2
     appVersion: 2.0.0
-    created: "2023-05-29T13:13:53.732326+02:00"
+    created: "2023-05-29T14:42:00.3909+02:00"
     description: Orchesty is a platform + framework for systems integration and process
       orchestration. See https://orchesty.io
     digest: 88fc5e97d5069b42e8bbb6efc548be285b8ff9964ddbf1bdae9978b71dc63a06
@@ -25,7 +36,7 @@ entries:
     version: 2.0.3
   - apiVersion: v2
     appVersion: 2.0.0
-    created: "2023-05-29T13:13:53.727704+02:00"
+    created: "2023-05-29T14:42:00.38919+02:00"
     description: Orchesty is a platform + framework for systems integration and process
       orchestration. See https://orchesty.io
     digest: bfb8b77fae0dcb31b9854d849f9d453b841ca5543c52e0d08d9ca2aeab9019e3
@@ -36,7 +47,7 @@ entries:
     version: 2.0.2
   - apiVersion: v2
     appVersion: 2.0.0
-    created: "2023-05-29T13:13:53.726105+02:00"
+    created: "2023-05-29T14:42:00.385547+02:00"
     description: Orchesty is a platform + framework for systems integration and process
       orchestration. See https://orchesty.io
     digest: 2069cd8ea0c445b01cfe70fabcbed2685685d813159092f24e604d86a8611bb4
@@ -47,7 +58,7 @@ entries:
     version: 2.0.1
   - apiVersion: v2
     appVersion: 2.0.0
-    created: "2023-05-29T13:13:53.724592+02:00"
+    created: "2023-05-29T14:42:00.384131+02:00"
     description: Orchesty is a platform + framework for systems integration and process
       orchestration. See https://orchesty.io
     digest: 1c0bf1ee8314ddbe8652d18955c8769c274c010c26876da142c469cd82457c27
@@ -58,7 +69,7 @@ entries:
     version: 2.0.0
   - apiVersion: v2
     appVersion: 1.0.6
-    created: "2023-05-29T13:13:53.723039+02:00"
+    created: "2023-05-29T14:42:00.382938+02:00"
     description: Orchesty is a platform + framework for systems integration and process
       orchestration. See https://orchesty.io
     digest: fdba50244cf2e46934fb436e746500f25025f78ac0ffd11b89d1746e756cdebd
@@ -69,7 +80,7 @@ entries:
     version: 1.2.5
   - apiVersion: v2
     appVersion: 1.0.6
-    created: "2023-05-29T13:13:53.721165+02:00"
+    created: "2023-05-29T14:42:00.38168+02:00"
     description: Orchesty is a platform + framework for systems integration and process
       orchestration. See https://orchesty.io
     digest: c860860913836af1c654c7bbeb177b04ea7fd99dd74f18eac0ef7b8f4b4763cf
@@ -80,7 +91,7 @@ entries:
     version: 1.2.4
   - apiVersion: v2
     appVersion: 1.0.6
-    created: "2023-05-29T13:13:53.719569+02:00"
+    created: "2023-05-29T14:42:00.380413+02:00"
     description: Orchesty is a platform + framework for systems integration and process
       orchestration. See https://orchesty.io
     digest: 0a90d85feb403a200c44c8cd301889718357e1905381ed0e522e72b0b5b518a7
@@ -91,7 +102,7 @@ entries:
     version: 1.2.3
   - apiVersion: v2
     appVersion: 1.1.0
-    created: "2023-05-29T13:13:53.718096+02:00"
+    created: "2023-05-29T14:42:00.378901+02:00"
     description: Orchesty si a platform + framework for systems integration and processes
       orchestration. See https://orchesty.io
     digest: 97fba270b5f2626904f71725e23e3a0533261cfdbd7aed704ffb1aacb29f97c5
@@ -102,7 +113,7 @@ entries:
     version: 1.2.2
   - apiVersion: v2
     appVersion: 1.1.0
-    created: "2023-05-29T13:13:53.716261+02:00"
+    created: "2023-05-29T14:42:00.377556+02:00"
     description: Orchesty si a platform + framework for systems integration and processes
       orchestration. See https://orchesty.io
     digest: 1ea536126186f3b289e62f27dfb69b8a563570dc334acc20b88499153c19e3e4
@@ -113,7 +124,7 @@ entries:
     version: 1.2.1
   - apiVersion: v2
     appVersion: 1.1.0
-    created: "2023-05-29T13:13:53.714718+02:00"
+    created: "2023-05-29T14:42:00.376262+02:00"
     description: Orchesty si a platform + framework for systems integration and processes
       orchestration. See https://orchesty.io
     digest: 46581736701233da28ca30c82fc68a4c2d922df31ac00f11f6badc940c544daf
@@ -122,4 +133,4 @@ entries:
     urls:
     - https://orchesty.github.io/helm-charts/orchesty-1.2.0.tgz
     version: 1.2.0
-generated: "2023-05-29T13:13:53.7121+02:00"
+generated: "2023-05-29T14:42:00.374361+02:00"
